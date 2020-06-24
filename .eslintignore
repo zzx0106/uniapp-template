@@ -1,0 +1,6 @@
+/src/lib
+/src/wxcomponents
+# uni-app会生成一个main?{"page":"pages%2Fxxx%2Fxxx"}，但实际上是找不到的
+# 这里只能排除掉main.js，就能避免这个文件报eslint的错误
+/src/main.js
+dist

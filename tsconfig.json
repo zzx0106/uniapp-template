@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "types": ["@dcloudio/types", "miniprogram-api-typings", "mini-types", "typings/*"],
+    "target": "es5",
+    "strict": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "rootDir": "./",
+    "paths": {
+      // 如果新增paths 需要重启编辑器才行
+      "@/*": ["src/*"]
+    }
+  },
+  "include": ["src", "typings"],
+  "exclude": ["node_modules", "build", "dist", "public"]
+}

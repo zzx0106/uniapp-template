@@ -1,0 +1,1 @@
+rm -rf dist/dev/mp-weixin/ && cp -r dist/build/mp-weixin/ dist/dev/
