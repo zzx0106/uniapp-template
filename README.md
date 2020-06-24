@@ -1,19 +1,13 @@
-# mini-recruit
+# uni-app 小程序模板
 
-## Project setup
-```
-yarn install
-```
+### vue3x没出来之前，尽可能使用js而不是ts。代码中做了一些操作，尽可能还原一些ts的提示功能
 
-### Compiles and hot-reloads for development
+### 使用
 ```
-yarn serve
+# 安装依赖
+npm i
+# 运行
+npm run dev:weapp
+# 打包
+npm run build:weapp
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
