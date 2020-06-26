@@ -45,3 +45,5 @@
 // 注意：prettier开发人员对vue貌似吧不友好，不支持jsxBracketSameLine属性
 // 使用大佬的pr     "prettier": "https://github.com/adamJLev/prettier#a0cd45b4cbea2039941f5cea0dccacf506b0fd2e",
 // issue地址：https://github.com/prettier/prettier/issues/5377#issuecomment-628722438
+// 20.6.26更新，adamJLev大佬上传了npm版本 prettier@npm:@adamjlev/prettier ，可以通过npm i prettier@npm:@adamjlev/prettier -D 或者 yarn add prettier@npm:@adamjlev/prettier -D 下载
+// 不能使用cnpm  建议使用 yarn
