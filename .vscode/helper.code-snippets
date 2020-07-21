@@ -35,6 +35,33 @@
     ],
     "description": "创建组件快捷方式"
   },
+  "uniapp page": {
+    "scope": "vue",
+    "prefix": "vue uniapp",
+    "body": [
+      "<template>",
+      "\t<view class=\"${1:my-page} root\">",
+      "\t\t<my-header title=\"$2\"></my-header>",
+      "\t</view>",
+      "</template>",
+      "<script>",
+      "export default {",
+      "\tname: '$1', // name显示组件名，可以方便搜索",
+      "\tdata() {",
+      "\t\treturn {};",
+      "\t},",
+      "\tcomputed: {},",
+      "\tonLoad() {},",
+      "\tmethods: {},",
+      "};",
+      "</script>",
+      "<style lang=\"scss\" scoped>",
+      ".$1 {",
+      "}",
+      "</style>"
+    ],
+    "description": "创建组件快捷方式"
+  },
   "media set l": {
     "scope": "vue,scss,sass,css",
     "prefix": "medial",

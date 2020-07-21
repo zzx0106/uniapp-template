@@ -1,5 +1,5 @@
 function setStorage(key, value) {
-  return uni.setStorageSync(key, data);
+  return uni.setStorageSync(key, value);
 }
 function removeStorage(key) {
   return uni.removeStorageSync(key);
@@ -20,7 +20,7 @@ function getStorage(key) {
  */
 function debounce(func, delay = 17, options = { leading: true, context: null }) {
   let timer;
-  const _debounce = function(...args) {
+  const _debounce = function (...args) {
     if (timer) {
       clearTimeout(timer);
     }
@@ -34,7 +34,7 @@ function debounce(func, delay = 17, options = { leading: true, context: null }) 
       }, delay);
     }
   };
-  _debounce.cancel = function() {
+  _debounce.cancel = function () {
     clearTimeout(timer);
     timer = null;
   };
@@ -53,7 +53,7 @@ function debounce(func, delay = 17, options = { leading: true, context: null }) 
 function throttle(func, delay = 1000, options = { leading: true, trailing: false, context: null }) {
   let previous = new Date(0).getTime();
   let timer = null;
-  const _throttle = function(...args) {
+  const _throttle = function (...args) {
     let now = new Date().getTime();
     if (!options.leading) {
       if (timer) return;
@@ -85,7 +85,7 @@ function throttle(func, delay = 1000, options = { leading: true, trailing: false
 function lazyImageLoad() {
   let imgList = [...document.querySelectorAll('img')];
   let num = imgList.length;
-  let lazyLoad = function() {};
+  let lazyLoad = function () {};
   if (window['IntersectionObserver']) {
     /**当 img 标签进入可视区域时会执行实例化时的回调，
      * 同时给回调传入一个 entries 参数，保存着实例观察的所有元素的一些状态，
@@ -93,7 +93,7 @@ function lazyImageLoad() {
      * 当前元素进入可视区域的比率，每当一个元素进入可视区域，
      * 将真正的图片赋值给当前 img 标签，同时解除对其的观察
      */
-    lazyLoad = function() {
+    lazyLoad = function () {
       let observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.intersectionRatio > 0) {
@@ -109,9 +109,9 @@ function lazyImageLoad() {
       });
     };
   } else {
-    lazyLoad = (function() {
+    lazyLoad = (function () {
       let count = 0;
-      return function() {
+      return function () {
         const deleteIndexList = [];
         imgList.forEach((img, index) => {
           const rect = img.getBoundingClientRect();
@@ -447,6 +447,7 @@ function getSystemInfo() {
   } else {
     platform.titleBarHeight = 48;
   }
+  platform.navHeight = platform.titleBarHeight + platform.statusBarHeight;
   // iPhone X、iPhone XS
   const isIPhoneX =
     /iphone/.test(platform.model.toLocaleLowerCase()) && Number(platform.screenWidth) == 375 && Number(platform.screenHeight) == 812;
@@ -459,6 +460,7 @@ function getSystemInfo() {
   if (isIPhoneX || isIPhoneXSMax || isIPhoneXR) {
     platform.isIphoneX = true;
   }
+  console.log('platform', platform);
   return platform;
 }
 

@@ -1,7 +1,31 @@
 import Vue from 'vue'; // 引用了type和value
 import 'uni-app';
+interface platform extends GetSystemInfoResult {
+  /**
+   * 顶部导航加状态栏高度
+   */
+  navHeight: number;
+  /**
+   * 导航栏高度
+   */
+  titleBarHeight: number;
+  /**
+   * 是否是iphonex
+   */
+  isIphoneX: boolean;
+}
 declare module 'vue/types/vue' {
   interface Vue {
+    /**
+     * 页面向上滚动到top的高度
+     * @param top 想上滚动的距离
+     * @param duration 滚动的时间
+     */
+    $scrollTo(top: number, duration?: number): Promise<any>;
+    /**
+     * 同步获取系统信息
+     */
+    $platform: platform;
     /**
      * 调用toast弹窗
      ```javascript
@@ -11,7 +35,7 @@ declare module 'vue/types/vue' {
       });
       ```
      */
-    $Toast(options?: ShowToastOptions): Promise<any>;
+    $Toast(options: string | ShowToastOptions): Promise<any>;
     /**
      * 调用modal弹窗
      ```javascript
@@ -28,7 +52,7 @@ declare module 'vue/types/vue' {
       ```javascript
       this.$navigateTo('/path', {params: 123});
       ``` 
-     */
+      */
     $navigateTo(url: string, data?: object): Promise<any>;
     /**
      * 重定向路由

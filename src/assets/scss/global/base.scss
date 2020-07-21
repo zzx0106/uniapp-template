@@ -1,0 +1,121 @@
+.root {
+  width: 100vw;
+  min-height: 100vh;
+}
+@mixin border-1px($color: #cccccc, $direction: row, $width: null, $height: null) {
+  position: relative;
+  &:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 0;
+    @if $width != null {
+      $width: $width;
+    } @else {
+      $width: if($direction == row, 100%, 1rpx); // 三目运算
+    }
+    @if $height != null {
+      $height: $height;
+    } @else {
+      $height: if($direction == row, 1rpx, 100%);
+    }
+    width: $width;
+    height: $height;
+    background-color: $color;
+    -webkit-transform: scale(1, 0.5);
+    transform: scale(1, 0.5);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+  }
+}
+.border-bottom-1px {
+  @include border-1px(#e5e5e5);
+}
+
+.border-right-1px {
+  @include border-1px(#cccccc, column, 1rpx, 100%);
+}
+.border-right-1px-2x {
+  @include border-1px(#cccccc, column, 1rpx, 200%);
+}
+.min-height48 {
+  // min-height: 48px;
+  // input {
+  //   min-height: 48px;
+  // }
+}
+.margin-top-20 {
+  margin-top: 20px;
+}
+.padding-top-20 {
+  padding-top: 20px;
+}
+.btn-box {
+  position: fixed;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  width: 750px;
+  height: 136px;
+  background: rgba(255, 255, 255, 1);
+  .btn-type1 {
+    width: 440px;
+  }
+  .btn-type2 {
+    width: 250px;
+    height: 96px;
+    background: rgba(227, 234, 253, 1);
+    border-radius: 10px;
+    border: 2px solid rgba(50, 85, 164, 0.5);
+    box-sizing: border-box;
+    margin-left: 20px;
+    font-size: 36px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(50, 85, 164, 1);
+    line-height: 96px;
+    text-align: center;
+  }
+  .btn {
+    &.cant {
+      background: #98aad1;
+    }
+    &.done {
+      background: #98aad1;
+    }
+    flex: 1;
+    margin: 0 20px;
+    height: 96px;
+    background: rgba(50, 85, 164, 1);
+    border-radius: 10px;
+    font-size: 36px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 1);
+    line-height: 96px;
+    text-align: center;
+  }
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.btn {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btn-loading {
+    margin-left: 20px;
+  }
+}
+.btn::after {
+  border: none;
+}

@@ -1,13 +1,13 @@
 <script>
 export default {
-  onLaunch: function() {
+  onLaunch: function () {
     // 检测升级
     if (uni.canIUse('getUpdateManager')) {
       const updateManager = uni.getUpdateManager();
-      updateManager.onCheckForUpdate(function(res) {
+      updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
         if (res.hasUpdate) {
-          updateManager.onUpdateReady(function(res2) {
+          updateManager.onUpdateReady(function (res2) {
             uni.showModal({
               title: '更新提示',
               content: '发现新版本，是否重启应用?',
@@ -39,7 +39,7 @@ export default {
         }
       });
 
-      updateManager.onUpdateFailed(function(res) {
+      updateManager.onUpdateFailed(function (res) {
         // 新的版本下载失败
         uni.showModal({
           title: '提示',
@@ -54,10 +54,10 @@ export default {
       });
     }
   },
-  onShow: function() {
+  onShow: function () {
     console.log('App Show');
   },
-  onHide: function() {
+  onHide: function () {
     console.log('App Hide');
   },
   // #ifdef MP-WEIXIN
@@ -70,4 +70,7 @@ export default {
 
 <style>
 /*每个页面公共css */
+
+/* 注意要写在第一行，同时给style标签加入lang="scss"属性 */
+@import 'uview-ui/index.scss';
 </style>

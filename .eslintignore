@@ -4,3 +4,4 @@
 # 这里只能排除掉main.js，就能避免这个文件报eslint的错误
 /src/main.js
 dist
+/px2rpx

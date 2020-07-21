@@ -1,8 +1,10 @@
 import HTTP from './http';
 import userLogin from '../login';
 import { setStorageSync } from '../tools';
-import expand from '../expand';
-import apiAdapter from '../../api/apiAdapter';
+import config from '../../config/config';
+const http = new HTTP({
+  baseUrl: config.baseUrl + '/api/xxxx',
+});
 const http = new HTTP();
 http.interceptors.request.use(
   async (request) => {
@@ -14,21 +16,8 @@ http.interceptors.request.use(
     // 如果没有http s开头，而是以纯str开头
     if (!request.url) return Promise.reject('url 不能为空');
     if (request.method === 'GET') return request;
-    let action = '';
-    request.data.sn = await expand.getSysPropSync(); // 设置sn
-    console.log('request', request, request.data.sn);
-    if (!/^(http|s)/.test(request.url)) {
-      request.apiAction = request.url;
-      action = request.apiAction;
-      request.url = apiAdapter.urlAdp(request.url);
-      request.data = apiAdapter.paramsAdp(request.apiAction, request.data);
-      console.log('当前url为config内部 request', request);
-    }
-    console.log(
-      `%c 发送 ${action} ---> ${/(cn|com|net)(\S*)/.exec(request.url)[2]} `,
-      'background:#2472C8;color:#fff',
-      JSON.parse(JSON.stringify(request.data || {}))
-    );
+
+    console.log(`%c 发送 ${request.url} ---> } `, 'background:#2472C8;color:#fff', JSON.parse(JSON.stringify(request.data || {})));
     return request;
   },
   (error) => {
@@ -41,19 +30,9 @@ http.interceptors.request.use(
  */
 http.interceptors.response.use(
   (response) => {
-    console.log(
-      `%c 接收 ${/(cn|com|net)(\S*)/.exec(response.config.url)[2]}`,
-      'background:#1E1E1E;color:#bada55',
-      JSON.parse(JSON.stringify(response.data))
-    );
+    console.log(`%c 接收 ${response.config.url}`, 'background:#1E1E1E;color:#bada55', JSON.parse(JSON.stringify(response.data)));
     const code = Number(response.data.code);
     if (code === 0) {
-      if (response.config.apiAction) {
-        console.log('===', response.config.apiAction, '====', response.data.data);
-        const result = apiAdapter.resultAdp(response.config.apiAction, response.data.data);
-        console.log('----result----', JSON.parse(JSON.stringify(result)));
-        return Promise.resolve(result);
-      }
       return Promise.resolve(response.data.data);
     } else {
       // 未绑定状态，直接跳转绑定页

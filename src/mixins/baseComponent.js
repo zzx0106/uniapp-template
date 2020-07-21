@@ -5,6 +5,17 @@ const baseComponent = {
     return {};
   },
   methods: {
+    $scrollTo(top, duration = 300) {
+      return new Promise(async (res, rej) => {
+        wx.pageScrollTo({
+          scrollTop: top,
+          duration,
+          success() {
+            res();
+          },
+        });
+      });
+    },
     adpPromise,
     /**
      * toast弹窗
