@@ -463,8 +463,42 @@ function getSystemInfo() {
   console.log('platform', platform);
   return platform;
 }
-
+/** 可以触摸滑动 */
+function touchController(domName, options = {}) {
+    options = Object.assign({ scrollY: true, scrollX: true }, options);
+    console.log('touchController', domName);
+    const dom = document.querySelector(domName);
+    dom.onmousedown = function(e) {
+        let el = e || event;
+        let Y = el.clientY;
+        let X = el.clientX;
+        const _dom = document.querySelector(domName);
+        let ToTop = _dom.scrollTop;
+        let Toleft = _dom.scrollLeft;
+        dom.onmousemove = throttle(function(ev) {
+            ev = ev || event;
+            const subY = ev.clientY - Y;
+            const subX = ev.clientX - X;
+            Y = ev.clientY;
+            X = ev.clientX;
+            ToTop -= subY;
+            Toleft -= subX;
+            if (options.scrollY) {
+                document.querySelector(domName).scrollTop = ToTop;
+            }
+            if (options.scrollX) {
+                document.querySelector(domName).scrollLeft = Toleft;
+            }
+        }, 10);
+        document.onmouseup = function() {
+            dom.onmousemove = function() {
+                null;
+            };
+        };
+    };
+}
 export {
+  touchController,
   getSystemInfo,
   sleep,
   adpPromise, // 小程序函数promise化
