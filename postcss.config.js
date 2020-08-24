@@ -21,7 +21,7 @@ module.exports = {
     require('./px2rpx')({
       viewportWidth: 750, // 设计稿宽度
       unitPrecision: 3, // px to rpx无法整除时，保留几位小数
-      viewportUnit: 'rpx', // 转换成vw单位
+      viewportUnit: 'rpx', // 转换成rpx单位
       // selectorBlackList: ['::after', '::before'], // 不转换的类名 ['::after','::before'] 待验证 已有的after befor不会被覆盖
       minPixelValue: 1, // 小于1px不转换
       mediaQuery: false, // 允许媒体查询中转换

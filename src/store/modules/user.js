@@ -1,7 +1,6 @@
 import WX from '../../utils/WX';
 import { api_login } from '../../api/api';
 import { setStorage, getStorage } from '../../utils/tools';
-import formStore from '../../utils/form_store';
 export default {
   namespaced: true,
   state: {
@@ -42,7 +41,6 @@ export default {
         const login = await api_login({ code });
         if (login.openId) {
           info.openId = login.openId;
-          formStore.update({ openId: login.openId });
         }
         Object.assign(info, { openId: login.openId });
         if (info.authorize) {
@@ -50,7 +48,7 @@ export default {
           const { userInfo } = await WX.getUserInfo();
           if (login.openId) {
             Object.assign(info, userInfo);
-            // setStorage('userInfo', { openId: login.openId, ...userInfo });
+            setStorage('userInfo', { openId: login.openId, ...userInfo });
           } else {
             info.authorize = false;
           }

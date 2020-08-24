@@ -5,7 +5,6 @@ import config from '../../config/config';
 const http = new HTTP({
   baseUrl: config.baseUrl + '/api/xxxx',
 });
-const http = new HTTP();
 http.interceptors.request.use(
   async (request) => {
     request.headers = {

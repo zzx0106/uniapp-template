@@ -1,5 +1,5 @@
 import http from '../utils/http/index';
-import config from '../config/config'
+import config from '../config/config';
 http.HOC_post = function (...arg) {
   // 过滤掉所有key为空的字段
   if (arg[1] && Object.keys(arg[1]).length > 0) {
