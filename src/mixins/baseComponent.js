@@ -5,6 +5,23 @@ const baseComponent = {
     return {};
   },
   methods: {
+    // ------------- vue
+    /** 创建timeout定时器 */
+    creatTimeout(callback, duration = 1000) {
+      let timer = setTimeout(callback, duration);
+      this.$once('hook:beforeDestroy', function () {
+        clearInterval(timer);
+      });
+    },
+    /** 创建interval定时器 */
+    creatInterval(callback, duration = 1000) {
+      let timer = setInterval(callback, duration);
+      this.$once('hook:beforeDestroy', function () {
+        clearInterval(timer);
+      });
+    },
+    // ------------- 小程序
+    /** 滚动到某个位置 */
     $scrollTo(top, duration = 300) {
       return new Promise(async (res, rej) => {
         wx.pageScrollTo({
